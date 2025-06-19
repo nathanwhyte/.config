@@ -1,0 +1,28 @@
+# general
+--windows-filenames
+--no-mtime
+--no-playlist
+--ignore-errors
+
+# download options
+--concurrent-fragments 24
+--buffer-size 10240
+--resize-buffer
+--embed-thumbnail
+--match-filters "duration<?10800"
+--path "/Users/natew/Music/Youtube"
+--output "%(playlist)s/%(title)s.%(ext)s"
+--embed-metadata
+--xattrs
+
+# ffmpeg options
+--extract-audio
+--audio-quality 0
+
+### NOT USED
+
+# general
+# --keep-video
+
+# video quality
+# --format "b"

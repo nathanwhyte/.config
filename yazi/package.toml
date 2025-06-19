@@ -1,0 +1,49 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "aeca767"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "aeca767"
+hash = "2bdc137505b8d9a0cc867a57d0e99b01"
+
+[[plugin.deps]]
+use = "Ape/simple-status"
+rev = "d0da104"
+hash = "68603fdd1dcaf415227e2c77a9317947"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "6a0f3f7"
+hash = "d5a74d95c2e8194ac352c5e10e81e64f"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:vcs-files"
+rev = "aeca767"
+hash = "70898957e9e4c1ca291ff26e8fdc434"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mactag"
+rev = "aeca767"
+hash = "6e0cbddb97038ea95f04f9de0944c175"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "aeca767"
+hash = "bf6f074cd41ee33c3360341d168f9733"
+
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "88bd1c5"
+hash = "981acbe9b758b1af3a8154c932bb936d"
+
+[[plugin.deps]]
+use = "AnirudhG07/rich-preview"
+rev = "843c3fa"
+hash = "b4040931f0d2f9670ddb4923e55cd881"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:dracula"
+rev = "d04a298"
+hash = "7b9ff01a0070cc9176e0c683329aeb26"

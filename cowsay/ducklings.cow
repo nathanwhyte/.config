@@ -1,0 +1,11 @@
+##
+## some ducklings
+##
+
+$the_cow = <<EOC;
+     $thoughts   
+      $thoughts  
+          _      _      _
+        >(.)__ <(.)__ =(.)__
+         (___/  (___/  (___/
+EOC
