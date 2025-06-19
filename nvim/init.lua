@@ -472,33 +472,34 @@ require('lazy').setup {
           map('<leader>ca', vim.lsp.buf.code_action, 'Go to code action', { 'n', 'x' })
 
           -- Find references for the word under your cursor.
-          map('cD', require('telescope.builtin').lsp_references, 'Go to references')
+          map('<leader>cD', require('telescope.builtin').lsp_references, 'Go to references')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gri', require('telescope.builtin').lsp_implementations, 'Go to implementation')
+          map('<leader>cI', require('telescope.builtin').lsp_implementations, 'Go to implementation')
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('cd', require('telescope.builtin').lsp_definitions, 'Go to definition')
+          map('<leader>cd', require('telescope.builtin').lsp_definitions, 'Go to definition')
 
           -- NOTE: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          map('grD', vim.lsp.buf.declaration, 'Go to declaration')
+          map('<leader>cl', vim.lsp.buf.declaration, 'Go to declaration')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
+          -- map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
+          -- map('<leader>cW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('grt', require('telescope.builtin').lsp_type_definitions, 'Go to type definition')
+          map('<leader>ct', require('telescope.builtin').lsp_type_definitions, 'Go to type definition')
+          map('<leader>cT', require('telescope.builtin').lsp_type_definitions, 'Go to type definition')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -599,10 +600,11 @@ require('lazy').setup {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
+        clangd = {},
+        gopls = {},
+        basedpyright = {},
+        rust_analyzer = {},
+
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -610,7 +612,6 @@ require('lazy').setup {
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        --
 
         lua_ls = {
           -- cmd = { ... },
@@ -696,11 +697,18 @@ require('lazy').setup {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
-
-        -- You can use 'stop_after_first' to run the first available formatter from the list
+        python = { 'ruff', 'black', stop_after_first = true },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        rust = { 'rustfmt', 'dioxus' },
+        toml = { 'taplo' },
+        json = { 'yq' },
+        yaml = { 'yq' },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        markdown = { 'prettierd', 'prettier', stop_after_first = true },
+        sh = { 'shfmt', 'shellcheck' },
+        ['*'] = { 'codespell' },
+        ['_'] = { 'trim_whitespace' },
       },
     },
   },
@@ -905,7 +913,7 @@ require('lazy').setup {
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'rust', 'toml' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'rust', 'toml', 'python' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -913,7 +921,7 @@ require('lazy').setup {
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
@@ -1034,7 +1042,11 @@ require('lazy').setup {
       -- Only one of these is needed.
       'nvim-telescope/telescope.nvim',
     },
-    opts = {},
+    config = function()
+      require('neogit').setup {}
+
+      vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<CR>', { desc = 'Open Neogit' })
+    end,
   },
 
   {
@@ -1067,14 +1079,27 @@ require('lazy').setup {
     opts = {},
   },
 
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
+
+  {
+    'mbbill/undotree',
+    config = function()
+      vim.keymap.set('n', '<C-u>', '<cmd>UndotreeToggle<CR>', { desc = 'Toggle Undotree' })
+      vim.g.undotree_SplitWidth = 45
+    end,
+  },
+
+  'ledger/vim-ledger',
+
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 }
-
--- Package keymaps
-vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<CR>', { desc = 'Open Neogit' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
