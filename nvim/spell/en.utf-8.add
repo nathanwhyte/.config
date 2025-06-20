@@ -2,3 +2,9 @@ config
 gitignore
 nvim
 keymaps
+LSP
+vscode
+Yazi
+json
+yaml
+treesitter
