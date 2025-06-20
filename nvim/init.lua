@@ -7,7 +7,9 @@ vim.g.have_nerd_font = true
 vim.opt.termguicolors = true
 
 vim.o.number = true
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
+
+vim.keymap.set('n', '<leader>ul', '<cmd>setl rnu!<cr>')
 
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
@@ -116,6 +118,14 @@ vim.keymap.set('n', '<leader>wo', '<C-w><C-w>', { desc = 'Next window' })
 vim.keymap.set('n', '<leader>wF', '<C-w>|', { desc = 'Maximize window horizontally' })
 vim.keymap.set('n', '<leader>w|', '<C-w>_', { desc = 'Maximize window vertically' })
 vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
+
+vim.keymap.set('n', ']e', function()
+  vim.diagnostic.jump { count = 1 }
+end, { desc = 'Jump to next diagnostic' })
+
+vim.keymap.set('n', '[e', function()
+  vim.diagnostic.jump { count = -1 }
+end, { desc = 'Jump to next diagnostic' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -413,6 +423,7 @@ require('lazy').setup {
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
       { 'mason-org/mason.nvim', opts = {} },
+
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -423,31 +434,6 @@ require('lazy').setup {
       'saghen/blink.cmp',
     },
     config = function()
-      -- Brief aside: **What is LSP?**
-      --
-      -- LSP is an initialism you've probably heard, but might not understand what it is.
-      --
-      -- LSP stands for Language Server Protocol. It's a protocol that helps editors
-      -- and language tooling communicate in a standardized fashion.
-      --
-      -- In general, you have a "server" which is some tool built to understand a particular
-      -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-      -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-      -- processes that communicate with some "client" - in this case, Neovim!
-      --
-      -- LSP provides Neovim with features like:
-      --  - Go to definition
-      --  - Find references
-      --  - Autocompletion
-      --  - Symbol Search
-      --  - and more!
-      --
-      -- Thus, Language Servers are external tools that must be installed separately from
-      -- Neovim. This is where `mason` and related plugins come into play.
-      --
-      -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-      -- and elegantly composed help section, `:help lsp-vs-treesitter`
-
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -625,7 +611,7 @@ require('lazy').setup {
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -957,6 +943,11 @@ require('lazy').setup {
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   { import = 'custom.plugins' },
 
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {},
+  },
+
   { -- custom dracula theme from local dir
     dir = '/Users/natew/.config/nvim/themes/dracula_pro/',
     lazy = false,
@@ -969,7 +960,12 @@ require('lazy').setup {
   { -- supermaven
     'supermaven-inc/supermaven-nvim',
     config = function()
-      require('supermaven-nvim').setup {}
+      require('supermaven-nvim').setup {
+        keymaps = {
+          accept_suggestion = '<Tab>',
+          accept_word = '<right>',
+        },
+      }
     end,
   },
 
@@ -1049,12 +1045,15 @@ require('lazy').setup {
     keys = {
       { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Open Neogit' },
     },
-    opts = {},
-    -- config = function()
-    --   require('neogit').setup {}
-    --
-    --   vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<CR>', { desc = 'Open Neogit' })
-    -- end,
+    opts = {
+      mappings = {
+        popup = {
+          ['F'] = 'PullPopup',
+          ['p'] = 'PushPopup',
+          ['P'] = 'PushPopup',
+        },
+      },
+    },
   },
 
   {
@@ -1098,7 +1097,7 @@ require('lazy').setup {
   {
     'mbbill/undotree',
     config = function()
-      vim.keymap.set('n', '<C-u>', '<cmd>UndotreeToggle<CR>', { desc = 'Toggle Undotree' })
+      vim.keymap.set('n', '<C-t>', '<cmd>UndotreeToggle<CR>', { desc = 'Toggle Undotree' })
       vim.g.undotree_SplitWidth = 45
     end,
   },
@@ -1109,6 +1108,10 @@ require('lazy').setup {
     'folke/trouble.nvim',
     opts = {
       focus = true,
+      keys = {
+        ['<space>'] = 'fold_toggle',
+        ['<tab>'] = 'fold_toggle',
+      },
     },
     cmd = 'Trouble',
     keys = {
