@@ -689,7 +689,7 @@ require('lazy').setup {
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         rust = { 'rustfmt', 'dioxus' },
         toml = { 'taplo' },
-        json = { 'yq' },
+        json = { 'jq' },
         yaml = { 'yq' },
         css = { 'prettierd', 'prettier', stop_after_first = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
@@ -901,7 +901,23 @@ require('lazy').setup {
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'rust', 'toml', 'python' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'rust',
+        'toml',
+        'python',
+        'json',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -920,6 +936,8 @@ require('lazy').setup {
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+
+  'nvim-treesitter/playground',
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
