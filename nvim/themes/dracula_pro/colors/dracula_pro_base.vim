@@ -842,6 +842,7 @@ if has('nvim')
     hi! link @punctuation.bracket DraculaFg
     hi! link @punctuation.special Special
     hi! link @punctuation Delimiter
+
     " # Constants
     hi! link @constant Constant
     hi! link @constant.builtin Constant
@@ -866,7 +867,7 @@ if has('nvim')
     hi! link @parameter DraculaOrangeItalic
     hi! link @parameter.reference DraculaOrange
     hi! link @field DraculaOrange
-    hi! link @property DraculaFg
+    hi! link @property DraculaCyanItalic
     hi! link @constructor DraculaCyan
     " # Keywords
     hi! link @label DraculaPurpleItalic
