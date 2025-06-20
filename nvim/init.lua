@@ -29,6 +29,8 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
 
+vim.keymap.set({ 'n', 'x' }, '<leader>p', '"_dP', { desc = 'Paste leader overwriting' })
+
 -- Enable break indent
 vim.o.breakindent = true
 
@@ -111,8 +113,8 @@ vim.keymap.set('n', '<leader>ws', '<C-w><C-s>', { desc = 'Split window horizonta
 vim.keymap.set('n', '<leader>wd', '<C-w><C-q>', { desc = 'Delete window' })
 vim.keymap.set('n', '<leader>ww', '<C-w><C-w>', { desc = 'Next window' })
 vim.keymap.set('n', '<leader>wo', '<C-w><C-w>', { desc = 'Next window' })
-vim.keymap.set('n', '<leader>wF', '<C-w>|', { desc = 'Maximize window' })
-vim.keymap.set('n', '<leader>w|', '<C-w>|', { desc = 'Maximize window' })
+vim.keymap.set('n', '<leader>wF', '<C-w>|', { desc = 'Maximize window horizontally' })
+vim.keymap.set('n', '<leader>w|', '<C-w>_', { desc = 'Maximize window vertically' })
 vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
 
 -- [[ Basic Autocommands ]]
@@ -485,7 +487,7 @@ require('lazy').setup {
 
           -- NOTE: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          map('<leader>cl', vim.lsp.buf.declaration, 'Go to declaration')
+          map('<leader>cc', vim.lsp.buf.declaration, 'Go to declaration')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
@@ -1030,11 +1032,13 @@ require('lazy').setup {
 
   {
     'numToStr/Comment.nvim',
+    lazy = true,
     opts = {},
   },
 
   {
     'NeogitOrg/neogit',
+    lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim', -- required
       'sindrets/diffview.nvim', -- optional - Diff integration
@@ -1042,11 +1046,15 @@ require('lazy').setup {
       -- Only one of these is needed.
       'nvim-telescope/telescope.nvim',
     },
-    config = function()
-      require('neogit').setup {}
-
-      vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<CR>', { desc = 'Open Neogit' })
-    end,
+    keys = {
+      { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Open Neogit' },
+    },
+    opts = {},
+    -- config = function()
+    --   require('neogit').setup {}
+    --
+    --   vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<CR>', { desc = 'Open Neogit' })
+    -- end,
   },
 
   {
@@ -1059,6 +1067,7 @@ require('lazy').setup {
   },
 
   { 'brenoprata10/nvim-highlight-colors', opts = {
+    lazy = true,
     enable_tailwind = true,
   } },
 
@@ -1074,13 +1083,14 @@ require('lazy').setup {
     cmd = { 'Outline', 'OutlineOpen' },
     keys = { -- Example mapping to toggle outline
       { '<leader>cS', '<cmd>Outline<CR>', desc = 'Toggle outline' },
-      { '<leader>cO', '<cmd>Outline<CR>', desc = 'Toggle outline' },
+      { '<leader>co', '<cmd>Outline<CR>', desc = 'Toggle outline' },
     },
     opts = {},
   },
 
   {
     'pmizio/typescript-tools.nvim',
+    lazy = true,
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
@@ -1094,6 +1104,46 @@ require('lazy').setup {
   },
 
   'ledger/vim-ledger',
+
+  {
+    'folke/trouble.nvim',
+    opts = {
+      focus = true,
+    },
+    cmd = 'Trouble',
+    keys = {
+      {
+        '<leader>cx',
+        '<cmd>Trouble diagnostics toggle<cr>',
+        desc = 'Diagnostics (Trouble)',
+      },
+      {
+        '<leader>cX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics (Trouble)',
+      },
+      {
+        '<leader>cn',
+        '<cmd>Trouble diagnostics next<cr>',
+        desc = 'Next error',
+      },
+      {
+        '<leader>cN',
+        '<cmd>Trouble diagnostics prev<cr>',
+        desc = 'Previous error',
+      },
+      {
+        '<leader>c]',
+        '<cmd>Trouble diagnostics next<cr>',
+        desc = 'Next error',
+      },
+      {
+        '<leader>c[',
+        '<cmd>Trouble diagnostics prev<cr>',
+        desc = 'Previous error',
+      },
+    },
+  },
 
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
