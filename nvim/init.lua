@@ -685,15 +685,15 @@ require('lazy').setup {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'ruff', 'black', stop_after_first = true },
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        python = { 'ruff' },
         rust = { 'rustfmt', 'dioxus' },
         toml = { 'taplo' },
         json = { 'jq' },
         yaml = { 'yq' },
-        css = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
-        markdown = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettier', 'eslint' },
+        typescript = { 'prettier', 'eslint' },
+        astro = { 'prettier', 'eslint' },
+        css = { 'prettier', 'eslint' },
         sh = { 'shfmt', 'shellcheck' },
         ['*'] = { 'codespell' },
         ['_'] = { 'trim_whitespace' },
@@ -895,6 +895,7 @@ require('lazy').setup {
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -927,8 +928,10 @@ require('lazy').setup {
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
+
       indent = { enable = true, disable = { 'ruby' } },
     },
+
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
@@ -1164,6 +1167,16 @@ require('lazy').setup {
         desc = 'Previous error',
       },
     },
+  },
+
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && yarn install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
   },
 
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
