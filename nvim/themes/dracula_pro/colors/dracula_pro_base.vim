@@ -202,6 +202,8 @@ endif
 call s:h('DraculaDiffText', s:bg, s:orange)
 call s:h('DraculaInlayHint', s:comment, s:bgdark)
 
+call s:h('DraculaURL', s:yellow, s:none ,[s:attrs.underline, s:attrs.italic])
+
 " }}}2
 
 " }}}
@@ -354,7 +356,7 @@ hi! link Delimiter DraculaFg
 
 hi! link Special DraculaPink
 hi! link SpecialComment DraculaCyanItalic
-hi! link Tag DraculaCyan
+hi! link Tag DraculaPink
 hi! link helpHyperTextJump DraculaLink
 hi! link helpCommand DraculaPurple
 hi! link helpExample DraculaGreen
@@ -839,7 +841,7 @@ if has('nvim')
   if has('nvim-0.8.1')
     " # Misc
     hi! link @punctuation.delimiter Delimiter
-    hi! link @punctuation.bracket DraculaFg
+    hi! link @punctuation.bracket DraculaRed
     hi! link @punctuation.special Special
     hi! link @punctuation Delimiter
 
@@ -853,7 +855,7 @@ if has('nvim')
     hi! link @string.regexp @string.special
     hi! link @string.special SpecialChar
     hi! link @string.special.symbol DraculaPurple
-    hi! link @string.special.url Underlined
+    hi! link @string.special.url DraculaURL
     hi! link @symbol DraculaPurple
     hi! link @annotation DraculaYellow
     hi! link @attribute DraculaGreenItalic
@@ -885,14 +887,14 @@ if has('nvim')
     hi! link @number Number
     hi! link @number.float Float
     " # Variable
-    hi! link @variable DraculaFg
+    hi! link @variable Variable
     hi! link @variable.builtin DraculaPurpleItalic
     hi! link @variable.parameter DraculaOrangeItalic
     hi! link @variable.member  DraculaOrange
     " # Text
     hi! link @text DraculaFg
     hi! link @text.strong DraculaFgBold
-    hi! link @text.emphasis DraculaFg
+    hi! link @text.emphasis DraculaFgItalic
     hi! link @text.underline Underlined
     hi! link @text.title DraculaYellow
     hi! link @text.literal DraculaYellow
@@ -906,10 +908,10 @@ if has('nvim')
     hi! link @markup.underline Underlined
 
     hi! link @markup Special
-    hi! link @markup.heading DraculaYellow
+    hi! link @markup.heading DraculaFgBold
     hi! link @markup.link Underlined
     hi! link @markup.link.uri DraculaYellow
-    hi! link @markup.link.label SpecialChar
+    hi! link @markup.link.label DraculaYellow
     hi! link @markup.raw DraculaYellow
     hi! link @markup.list Special
 
@@ -924,7 +926,7 @@ if has('nvim')
     hi! link @diff.delta Changed
 
     " # Tags
-    hi! link @tag DraculaCyan
+    hi! link @tag DraculaPink
     hi! link @tag.delimiter DraculaFg
     " HTML and JSX tag attributes. By default, this group is linked to TSProperty,
     " which in turn links to Identifer (white).
