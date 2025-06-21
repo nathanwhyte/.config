@@ -3,9 +3,7 @@ live_config_reload = true
 working_directory = "None"
 
 # Dracula Pro
-import = [
-    "~/.config/alacritty/themes/dracula-pro-van-helsing.toml",
-]
+import = ["~/.config/alacritty/themes/dracula-pro-van-helsing.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -35,7 +33,6 @@ bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
 
 [terminal]
 shell = { program = "/bin/zsh", args = ["--login"] }
-# shell = { program = "/bin/zsh", args = ["--login", "-c", "tmux"] }
 
 [mouse]
 hide_when_typing = true
@@ -45,11 +42,11 @@ style = "Beam"
 
 [keyboard]
 bindings = [
-    { key = "V", mods = "Control|Shift", action = "Paste" },
-    { key = "C", mods = "Control|Shift", action = "Copy" },
-    { key = "Insert", mods = "Shift", action = "PasteSelection" },
-    { key = "Key0", mods = "Control", action = "ResetFontSize" },
-    { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
-    { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
-    { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "Insert", mods = "Shift", action = "PasteSelection" },
+  { key = "Key0", mods = "Control", action = "ResetFontSize" },
+  { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
 ]

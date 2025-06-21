@@ -14,63 +14,62 @@ show_hidden = true
 ### FETCHERS ###
 # GIT
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*"
-run  = "git"
+run = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
+id = "git"
 name = "*/"
-run  = "git"
+run = "git"
 
 # MACTAG
 [[plugin.prepend_fetchers]]
-id   = "mactag"
+id = "mactag"
 name = "*"
-run  = "mactag"
+run = "mactag"
 
 [[plugin.prepend_fetchers]]
-id   = "mactag"
+id = "mactag"
 name = "*/"
-run  = "mactag"
+run = "mactag"
 
 ### PREVIEWERS ###
 
 # RICH-CLI
 [[plugin.prepend_previewers]]
 name = "*.csv"
-run  = 'rich-preview'
+run = 'rich-preview'
 
 [[plugin.prepend_previewers]]
 name = "*.md"
-run  = 'rich-preview'
+run = 'rich-preview'
 
 [[plugin.prepend_previewers]]
 name = "*.rst"
-run  = 'rich-preview'
+run = 'rich-preview'
 
 [[plugin.prepend_previewers]]
 name = "*.ipynb"
-run  = 'rich-preview'
+run = 'rich-preview'
 
 [[plugin.prepend_previewers]]
 name = "*.json"
-run  = 'rich-preview'
+run = 'rich-preview'
 
 # PIPER
 [[plugin.prepend_previewers]]
 name = "*.tar*"
-run  = 'piper --format=url -- tar tf "$1"'
+run = 'piper --format=url -- tar tf "$1"'
 
 [[plugin.prepend_previewers]]
 name = "*.csv"
-run  = 'piper -- bat -p --color=always "$1"'
+run = 'piper -- bat -p --color=always "$1"'
 
 [[plugin.prepend_previewers]]
 name = "*.md"
-run  = 'piper -- rich -j --left --panel=rounded --guides --line-numbers --force-terminal "$1"'
+run = 'piper -- rich -j --left --panel=rounded --guides --line-numbers --force-terminal "$1"'
 
 [[plugin.append_previewers]]
 name = "*"
-run  = 'piper -- hexyl --border=none --terminal-width=$w "$1"'
-
+run = 'piper -- hexyl --border=none --terminal-width=$w "$1"'
