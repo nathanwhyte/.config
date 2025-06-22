@@ -10,6 +10,24 @@ return { -- Collection of various small independent plugins/modules
     -- add/delete/replace surroundings (brackets, quotes, etc.)
     require('mini.surround').setup()
 
+    -- session management
+    require('mini.sessions').setup()
+
+    -- remove trailing whitespace
+    require('mini.trailspace').setup()
+
+    -- better jumping between code blocks
+    require('mini.bracketed').setup()
+
+    -- better commenting
+    require('mini.comment').setup()
+
+    -- icons
+    require('mini.icons').setup()
+
+    -- other smaller improvements
+    require('mini.misc').setup()
+
     -- ... and more!
   end,
 }
