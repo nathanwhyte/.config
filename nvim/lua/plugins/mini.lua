@@ -1,7 +1,7 @@
 -- A collection of small plugins that do a lot
 -- https://github.com/echasnovski/mini.nvim
 
-return { -- Collection of various small independent plugins/modules
+return {
   'echasnovski/mini.nvim',
   config = function()
     -- better Around/Inside textobjects
@@ -21,6 +21,9 @@ return { -- Collection of various small independent plugins/modules
 
     -- better commenting
     require('mini.comment').setup()
+
+    -- interactively align text
+    require('mini.align').setup()
 
     -- icons
     require('mini.icons').setup()
