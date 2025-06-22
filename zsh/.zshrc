@@ -67,8 +67,8 @@ export JAVA_HOME=`/usr/libexec/java_home -v 23.0.2`
 export BAT_THEME="Dracula"
 
 # pipe `--help` command output through bat
-alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+alias -g -- -h="-h 2>&1 | bat --language=help --style=plain"
+alias -g -- --help="--help 2>&1 | bat --language=help --style=plain"
 
 ### STARSHIP ###
 export STARSHIP_CONFIG="/Users/natew/.config/starship/starship.toml"
@@ -81,7 +81,7 @@ SAVEHIST=5000
 
 # bindkey -v
 
-zstyle :compinstall filename '/Users/natew/.config/zsh/.zshrc'
+zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
 
 
 ##### PLUGINS #####
@@ -163,11 +163,11 @@ export GPG_TTY=$(tty)
 
 ### YAZI ###
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
 }
 
 
@@ -216,8 +216,8 @@ alias bgrep="batgrep --terminal-width $(tput cols)"
 alias bdiff="batdiff"
 
 ### COWSAY ###
-alias cowsay="cowsay -f /$HOME/.config/cowsay/elephant.cow"
-alias ducksay="cowsay -f /$HOME/.config/cowsay/ducklings.cow"
+alias cowsay="cowsay -f $HOME/.config/cowsay/elephant.cow"
+alias ducksay="cowsay -f $HOME/.config/cowsay/ducklings.cow"
 
 ### MISC ###
 alias vim="nvim"
@@ -228,11 +228,3 @@ alias clip="pbcopy"
 
 eval "$(rbenv init - zsh)"
 eval "$(starship init zsh)"
-
-# Check that the function `starship_zle-keymap-select()` is defined.
-# Fixes recursive function definition error on macos.
-# xref: https://github.com/starship/starship/issues/3418
-# type starship_zle-keymap-select >/dev/null ||
-#     {
-#         eval "$(starship init zsh)"
-#     }
