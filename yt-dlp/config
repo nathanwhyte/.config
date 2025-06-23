@@ -6,8 +6,8 @@
 
 # download options
 --concurrent-fragments 24
---buffer-size 10240
 --resize-buffer
+--buffer-size 10240
 --embed-thumbnail
 --match-filters "duration<?10800"
 --path "/Users/natew/Music/Youtube"
@@ -22,7 +22,5 @@
 ### NOT USED
 
 # general
-# --keep-video
+--keep-video
 
-# video quality
-# --format "b"
