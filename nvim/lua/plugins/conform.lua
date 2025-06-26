@@ -1,4 +1,4 @@
--- Manage foramtters
+-- Manage formatters
 -- https://github.com/stevearc/conform.nvim
 
 return {
@@ -11,7 +11,7 @@ return {
       function()
         require('conform').format { async = true, lsp_format = 'fallback' }
       end,
-      mode = '',
+      mode = 'n',
       desc = 'Format buffer',
     },
   },
@@ -39,7 +39,9 @@ return {
       json = { 'jq' },
       yaml = { 'yq' },
       javascript = { 'prettier', 'eslint' },
+      javascriptreact = { 'prettier', 'eslint' },
       typescript = { 'prettier', 'eslint' },
+      typescriptreact = { 'prettier', 'eslint' },
       astro = { 'prettier', 'eslint' },
       css = { 'prettier', 'eslint' },
       sh = { 'shfmt', 'shellcheck' },

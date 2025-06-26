@@ -16,6 +16,5 @@ return {
     }
 
     vim.keymap.set('n', '<leader>bp', '<cmd>BufferLinePick<CR>', { desc = 'Pick an active buffer' })
-    vim.keymap.set('n', 'BP', '<cmd>BufferLinePick<CR>', { desc = 'Pick an active buffer' })
   end,
 }
