@@ -32,6 +32,7 @@ return {
     --   end
     -- end,
     formatters_by_ft = {
+      -- built-in file types
       lua = { 'stylua' },
       python = { 'ruff' },
       rust = { 'rustfmt', 'dioxus' },
@@ -45,6 +46,10 @@ return {
       astro = { 'prettier', 'eslint' },
       css = { 'prettier', 'eslint' },
       sh = { 'shfmt', 'shellcheck' },
+
+      -- specific file types
+      ["jsonc"] = { 'jq' },
+
       ['*'] = { 'codespell' },
       ['_'] = { 'trim_whitespace' },
     },
