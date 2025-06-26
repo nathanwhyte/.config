@@ -5,7 +5,7 @@
 --ignore-errors
 
 # download options
-# --concurrent-fragments 24
+--concurrent-fragments 8
 --resize-buffer
 --buffer-size 10240
 --embed-thumbnail
@@ -16,11 +16,5 @@
 --xattrs
 
 # ffmpeg options
-# --extract-audio
-# --audio-quality 0
-
-### NOT USED
-
-# general
---keep-video
-
+--extract-audio
+--audio-quality 0
