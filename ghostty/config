@@ -1,0 +1,5 @@
+### FONT ###
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 16.5
+font-thicken = true
+alpha-blending = "native"
