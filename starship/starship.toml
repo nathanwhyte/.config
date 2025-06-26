@@ -5,9 +5,9 @@
 add_newline = true
 
 [character]
-success_symbol = "[#](bold green)"
-error_symbol = "[*](bold red)"
-vimcmd_symbol = "[V](bold purple)"
+success_symbol = "[ #](bold green)"
+error_symbol = "[ *](bold red)"
+vimcmd_symbol = "[ V](bold purple)"
 
 [hostname]
 format = "[$hostname]($style) in "
@@ -17,14 +17,14 @@ ssh_only = true
 
 [status]
 symbol = '!'
-format = '[$symbol]($style) '
+format = ' [$symbol]($style)'
 map_symbol = true
 disabled = false
 
 [username]
 style_user = "bold blue"
 style_root = "bold red"
-format = "[$user]($style) in "
+format = " [$user]($style) in "
 show_always = true
 
 
