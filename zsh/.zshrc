@@ -186,8 +186,8 @@ alias untar="tar -zxvf "
 ### LS -> EZA ###
 alias ls="eza -al --color=always --group-directories-first --icons --sort=extension"
 alias la="eza -a --color=always --group-directories-first --icons"
-alias ll="eza -l --color=always --group-directories-first --icons"
-alias lt="eza -aT --color=always --group-directories-first --icons"
+alias ll="eza --color=always --group-directories-first --icons"
+alias lt="eza -al --color=always --group-directories-first --icons --sort=extension --tree"
 
 ### GIT ###
 alias glog="git log --decorate --graph --oneline --all"
@@ -210,8 +210,11 @@ alias pip="pip3"
 alias batman="BAT_THEME=\"TwoDark\" batman"
 alias man="batman"
 alias bman="batman"
-alias bgrep="batgrep --terminal-width $(tput cols)"
 alias bdiff="batdiff"
+
+function bgrep() {
+    batgrep --terminal-width $(tput cols) "$@"
+}
 
 function bfind() {
     find "$@" -exec bat {} +
