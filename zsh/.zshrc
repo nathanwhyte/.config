@@ -200,8 +200,9 @@ alias gdiff="git diff"
 ### NERDFETCH ###
 alias neofetch="fastfetch"
 
-### RIPGREP ###
-alias grep="rg --color=always"
+### GREP/RIPGREP ###
+alias grep="grep --color=always"
+alias rg="rg --color=always"
 
 ### PYTHON ###
 alias python="python3"
@@ -218,6 +219,9 @@ alias bdiff="batdiff"
 ### COWSAY ###
 alias cowsay="cowsay -f $HOME/.config/cowsay/elephant.cow"
 alias ducksay="cowsay -f $HOME/.config/cowsay/ducklings.cow"
+
+### TELEVISION ###
+alias tvt="tv text"
 
 ### MISC ###
 alias vim="nvim"
