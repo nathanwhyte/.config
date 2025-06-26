@@ -79,8 +79,6 @@ HISTFILE=~/.config/zsh/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
 
-# bindkey -v
-
 zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
 
 
@@ -112,11 +110,11 @@ function zvm_after_init() {
     source <(fzf --zsh)
     export FZF_DEFAULT_OPTS="--style full"
 
-    ### TELEVISION ###
-    eval "$(tv init zsh)"
-
     ### SYSTEM CLIPBOARD ###
     source $(brew --prefix)/share/zsh-system-clipboard/zsh-system-clipboard.zsh
+
+    ### TELEVISION ###
+    source $HOME/.config/television/shell/integration.zsh
 
     ### AUTOSUGGESTIONS ###
     bindkey '^ ' autosuggest-accept
@@ -209,12 +207,19 @@ alias python="python3"
 alias pip="pip3"
 
 ### BAT ###
-alias cat="bat"
 alias batman="BAT_THEME=\"TwoDark\" batman"
 alias man="batman"
 alias bman="batman"
 alias bgrep="batgrep --terminal-width $(tput cols)"
 alias bdiff="batdiff"
+
+function bfind() {
+    find "$@" -exec bat {} +
+}
+
+function bfd() {
+    fd "$@" -X bat
+}
 
 ### COWSAY ###
 alias cowsay="cowsay -f $HOME/.config/cowsay/elephant.cow"
