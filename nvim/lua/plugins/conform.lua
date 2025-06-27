@@ -9,56 +9,62 @@ return {
     {
       '<leader>cf',
       function()
-        require('conform').format { async = true, lsp_format = 'fallback' }
+        require('conform').format { async = true }
       end,
       mode = 'n',
       desc = 'Format buffer',
     },
   },
+
   opts = {
+    log_level = vim.log.levels.DEBUG,
+
     notify_on_error = false,
-    -- format_on_save = function(bufnr)
-    --   -- Disable "format_on_save lsp_fallback" for languages that don't
-    --   -- have a well standardized coding style. You can add additional
-    --   -- languages here or re-enable it for the disabled ones.
-    --   local disable_filetypes = { c = true, cpp = true }
-    --   if disable_filetypes[vim.bo[bufnr].filetype] then
-    --     return nil
-    --   else
-    --     return {
-    --       timeout_ms = 500,
-    --       lsp_format = 'fallback',
-    --     }
-    --   end
-    -- end,
+
+    default_format_opts = {
+      lsp_format = 'fallback',
+    },
+
     formatters_by_ft = {
+      -- interpreted
+      sh = { 'shfmt', 'shellcheck' },
       lua = { 'stylua' },
       python = { 'ruff' },
+
+      -- compiled
       rust = { 'rustfmt', 'dioxus' },
+
+      -- markup
+      markdown = { 'markdownfmt', 'cbfmt' },
       toml = { 'taplo' },
       json = { 'jq' },
       yaml = { 'yq' },
-      javascript = { 'prettier', 'eslint' },
-      javascriptreact = { 'prettier', 'eslint' },
-      typescript = { 'prettier', 'eslint' },
-      typescriptreact = { 'prettier', 'eslint' },
-      markdown = { 'prettier' },
-      astro = { 'prettier', 'eslint', lsp_format = 'fallback' },
-      css = { 'prettier', 'eslint' },
-      sh = { 'shfmt', 'shellcheck' },
+
+      -- web
+      javascript = { 'prettierd', 'prettier', stop_after_first = true },
+      javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      typescript = { 'prettierd', 'prettier', stop_after_first = true },
+      typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      css = { 'stylelint', 'prettierd', 'prettier', stop_after_first = true },
 
       -- specific file types
       ['jsonc'] = { 'jq' },
+      ['astro'] = { 'prettierd', 'prettier', stop_after_first = true },
 
-      -- catch-all
+      -- catch-alls
       ['*'] = { 'codespell' },
       ['_'] = { 'trim_whitespace' },
     },
-  },
 
-  config = function()
-    require('conform').formatters.shfmt = {
-      prepend_args = { '-i', '2' },
-    }
-  end,
+    formatters = {
+      shfmt = {
+        command = 'shfmt',
+        args = { '-i', '2' },
+      },
+      -- markdownfmt = {
+      --   command = 'markdownfmt',
+      --   args = { '-w', '$FILENAME' },
+      -- },
+    },
+  },
 }
