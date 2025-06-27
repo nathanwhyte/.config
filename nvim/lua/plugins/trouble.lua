@@ -1,5 +1,7 @@
 return {
   'folke/trouble.nvim',
+  dependencies = { 'folke/todo-comments.nvim' },
+  cmd = 'Trouble',
   opts = {
     focus = true,
     keys = {
@@ -7,7 +9,7 @@ return {
       ['<tab>'] = 'fold_toggle',
     },
   },
-  cmd = 'Trouble',
+
   keys = {
     {
       '<leader>cx',
@@ -38,6 +40,11 @@ return {
       '<leader>c[',
       '<cmd>Trouble diagnostics prev<cr>',
       desc = 'Previous error',
+    },
+    {
+      '<leader>tT',
+      '<cmd>Trouble todo<cr>',
+      desc = 'View TODOs in Trouble',
     },
   },
 }

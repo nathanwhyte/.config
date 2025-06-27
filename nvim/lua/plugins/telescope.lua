@@ -6,8 +6,13 @@ return {
   event = 'VimEnter',
   dependencies = {
     'nvim-lua/plenary.nvim',
+
     'nvim-telescope/telescope-ui-select.nvim',
+
+    'folke/todo-comments.nvim',
+
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
     {
       'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -46,6 +51,7 @@ return {
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Grep search' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Search diagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume search' })
+    vim.keymap.set('n', '<leader>sT', '<cmd>TodoTelescope<cr>', { desc = 'Search TODOs.' })
 
     -- files
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'search files' })
