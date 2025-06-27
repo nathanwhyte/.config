@@ -61,10 +61,6 @@ return {
         command = 'shfmt',
         args = { '-i', '2' },
       },
-      -- markdownfmt = {
-      --   command = 'markdownfmt',
-      --   args = { '-w', '$FILENAME' },
-      -- },
     },
   },
 }
