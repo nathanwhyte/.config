@@ -15,7 +15,7 @@ decorations = "Buttonless"
 dynamic_padding = false
 
 [font]
-size = 16.5
+size = 17.5
 
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
