@@ -66,12 +66,14 @@ export JAVA_HOME=`/usr/libexec/java_home -v 23.0.2`
 ### BAT ###
 export BAT_THEME="Dracula"
 
-# pipe `--help` command output through bat
 alias -g -- -h="-h 2>&1 | bat --language=help --style=plain"
 alias -g -- --help="--help 2>&1 | bat --language=help --style=plain"
 
 ### STARSHIP ###
 export STARSHIP_CONFIG="/Users/natew/.config/starship/starship.toml"
+
+### GEMINI ###
+export GEMINI_API_KEY="$(cat ~/Code/keys/gemini-api-key.txt)"
 
 ##### FROM ZSH-NEWUSER-INSTALL #####
 
@@ -185,8 +187,8 @@ alias untar="tar -zxvf "
 
 ### LS -> EZA ###
 alias ls="eza -al --color=always --group-directories-first --icons --sort=extension"
-alias la="eza -a --color=always --group-directories-first --icons"
-alias ll="eza --color=always --group-directories-first --icons"
+alias la="eza -a --group-directories-first"
+alias ll="eza --group-directories-first"
 alias lt="eza -al --color=always --group-directories-first --icons --sort=extension --tree"
 
 ### GIT ###
