@@ -43,6 +43,7 @@ return {
       javascriptreact = { 'prettier', 'eslint' },
       typescript = { 'prettier', 'eslint' },
       typescriptreact = { 'prettier', 'eslint' },
+      markdown = { 'prettier' },
       astro = { 'prettier', 'eslint' },
       css = { 'prettier', 'eslint' },
       sh = { 'shfmt', 'shellcheck' },

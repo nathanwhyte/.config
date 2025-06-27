@@ -143,6 +143,7 @@ call s:h('DraculaBgDarker', s:none, s:bgdarker)
 call s:h('DraculaFg', s:fg)
 call s:h('DraculaFgUnderline', s:fg, s:none, [s:attrs.underline])
 call s:h('DraculaFgBold', s:fg, s:none, [s:attrs.bold])
+call s:h('DraculaFgItalic', s:fg, s:none, [s:attrs.italic])
 call s:h('DraculaFgStrikethrough', s:fg, s:none, [s:attrs.strikethrough])
 
 call s:h('DraculaComment', s:comment)
@@ -167,6 +168,7 @@ call s:h('DraculaOrangeBoldItalic', s:orange, s:none, [s:attrs.bold, s:attrs.ita
 call s:h('DraculaOrangeInverse', s:bg, s:orange)
 
 call s:h('DraculaPink', s:pink)
+call s:h('DraculaPinkBold', s:pink, s:none, [s:attrs.bold])
 call s:h('DraculaPinkItalic', s:pink, s:none, [s:attrs.italic])
 
 call s:h('DraculaPurple', s:purple)
@@ -914,6 +916,17 @@ if has('nvim')
     hi! link @markup.link.label DraculaYellow
     hi! link @markup.raw DraculaYellow
     hi! link @markup.list Special
+
+    hi! link @markup.heading.1.markdown DraculaPurpleBold
+    hi! link @markup.heading.2.markdown DraculaPurpleBold
+    hi! link @markup.heading.3.markdown DraculaPurpleBold
+    hi! link @markup.heading.4.markdown DraculaPurpleBold
+    hi! link @markup.heading.5.markdown DraculaPurpleBold
+    hi! link @markup.heading.6.markdown DraculaPurpleBold
+
+    hi! link @markup.heading.markdown DraculaPinkBold
+
+    hi! link @markup.italic.markdown_inline DraculaFgItalic
 
     hi! link @comment Comment
     hi! link @comment.error DiagnosticError
