@@ -207,6 +207,7 @@ alias python="python3"
 alias pip="pip3"
 
 ### BAT ###
+alias cat="bat"
 alias batman="BAT_THEME=\"TwoDark\" batman"
 alias man="batman"
 alias bman="batman"
