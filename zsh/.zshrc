@@ -8,6 +8,10 @@ if [ -d "$HOME/Code/bin" ]; then
     export PATH=$HOME/Code/bin:$PATH
 fi
 
+if [ -d "$HOME/Code/scripts" ]; then
+    export PATH=$HOME/Code/scripts:$PATH
+fi
+
 ### DOCKER ###
 FPATH="$HOME/.docker/completions:$FPATH"
 
@@ -49,10 +53,10 @@ if [ -d "$HOME/.local/share/cargo/bin" ]; then
 fi
 
 ### GO ###
-export GOPATH="$HOME/.go/bin"
+export GOPATH="$HOME/.go"
 
-if [ -d "$HOME/.go/bin" ]; then
-    export PATH=$HOME/.go/bin:$PATH
+if [ -d "$GOPATH/bin" ]; then
+    export PATH="$GOPATH/bin":$PATH
 fi
 
 ### RUBY ###
@@ -75,9 +79,11 @@ export STARSHIP_CONFIG="/Users/natew/.config/starship/starship.toml"
 ### GEMINI ###
 export GEMINI_API_KEY="$(cat ~/Code/keys/gemini-api-key.txt)"
 
+
 ##### FROM ZSH-NEWUSER-INSTALL #####
 
 HISTFILE=~/.config/zsh/.histfile
+
 HISTSIZE=5000
 SAVEHIST=5000
 
