@@ -183,8 +183,8 @@ tmux_conf_theme_terminal_title="#h ❐ #S ● #I #W"
 #     - #{hostname_full_ssh}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_window_status_fg="$van_helsing_color_bg"
-tmux_conf_theme_window_status_bg="$van_helsing_color_dim_white"
+tmux_conf_theme_window_status_fg="$van_helsing_color_dim_white"
+tmux_conf_theme_window_status_bg="$van_helsing_color_bg"
 tmux_conf_theme_window_status_attr="none"
 tmux_conf_theme_window_status_format="#I #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
 
@@ -198,10 +198,10 @@ tmux_conf_theme_window_status_format="#I #W#{?#{||:#{window_bell_flag},#{window_
 #     - #{hostname_full_ssh}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_window_status_current_fg="$van_helsing_color_bg"
-tmux_conf_theme_window_status_current_bg="$van_helsing_color_bright_magenta"
+tmux_conf_theme_window_status_current_fg="$van_helsing_color_bright_magenta"
+tmux_conf_theme_window_status_current_bg="$van_helsing_color_bg"
 tmux_conf_theme_window_status_current_attr="bold"
-tmux_conf_theme_window_status_current_format="#I #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
+tmux_conf_theme_window_status_current_format="< #I #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,} >"
 
 # window activity status style
 tmux_conf_theme_window_status_activity_fg="default"
@@ -214,8 +214,8 @@ tmux_conf_theme_window_status_bell_bg="default"
 tmux_conf_theme_window_status_bell_attr="blink,bold"
 
 # window last status style
-tmux_conf_theme_window_status_last_fg="$van_helsing_color_bg"
-tmux_conf_theme_window_status_last_bg="$van_helsing_color_bright_blue"
+tmux_conf_theme_window_status_last_fg="$van_helsing_color_bright_blue"
+tmux_conf_theme_window_status_last_bg="$van_helsing_color_bg"
 tmux_conf_theme_window_status_last_attr="none"
 
 # status left/right sections separators
@@ -251,9 +251,9 @@ tmux_conf_theme_right_separator_sub='\uE0B3'
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" > #S"
+tmux_conf_theme_status_left=" ~ #S"
 
-tmux_conf_theme_status_right=" #{prefix}#{pairing}#{synchronized}|#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},}|#{?battery_status,#{battery_status},} | #{username} | 🪿🐘🦦🦕"
+tmux_conf_theme_status_right=" #{prefix}#{pairing}#{synchronized}|#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},}|#{?battery_status,#{battery_status},} |#{username}| 🪿🐘🦦🦕"
 
 # status left style
 tmux_conf_theme_status_left_fg="$van_helsing_color_green"
@@ -261,8 +261,8 @@ tmux_conf_theme_status_left_bg="$van_helsing_color_bg"
 tmux_conf_theme_status_left_attr="bold"
 
 # status right style
-tmux_conf_theme_status_right_fg="$van_helsing_color_dim_cyan,$van_helsing_color_bg,$van_helsing_color_yellow,$van_helsing_color_bg,$van_helsing_color_white"
-tmux_conf_theme_status_right_bg="$van_helsing_color_bg,$van_helsing_color_bg,$van_helsing_color_bg,$van_helsing_color_cyan,$van_helsing_color_bg"
+tmux_conf_theme_status_right_fg="$van_helsing_color_dim_cyan,$van_helsing_color_bg,$van_helsing_color_yellow,$van_helsing_color_cyan,$van_helsing_color_white"
+tmux_conf_theme_status_right_bg="$van_helsing_color_bg,$van_helsing_color_bg,$van_helsing_color_bg,$van_helsing_color_bg,$van_helsing_color_bg"
 
 tmux_conf_theme_status_right_attr="bold,bold,bold,bold,bold"
 
