@@ -32,7 +32,6 @@ return {
     --   end
     -- end,
     formatters_by_ft = {
-      -- built-in file types
       lua = { 'stylua' },
       python = { 'ruff' },
       rust = { 'rustfmt', 'dioxus' },
@@ -44,15 +43,22 @@ return {
       typescript = { 'prettier', 'eslint' },
       typescriptreact = { 'prettier', 'eslint' },
       markdown = { 'prettier' },
-      astro = { 'prettier', 'eslint' },
+      astro = { 'prettier', 'eslint', lsp_format = 'fallback' },
       css = { 'prettier', 'eslint' },
       sh = { 'shfmt', 'shellcheck' },
 
       -- specific file types
-      ["jsonc"] = { 'jq' },
+      ['jsonc'] = { 'jq' },
 
+      -- catch-all
       ['*'] = { 'codespell' },
       ['_'] = { 'trim_whitespace' },
     },
   },
+
+  config = function()
+    require('conform').formatters.shfmt = {
+      prepend_args = { '-i', '2' },
+    }
+  end,
 }
